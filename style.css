@@ -1122,3 +1122,163 @@ section {
     }
 
 }
+
+
+/* ===== APK VAULT THEME FOOTER ===== */
+.footer {
+    margin-top: 55px;
+    background: #0b1120;
+    color: #f8fafc;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: inherit;
+}
+
+.footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding-top: 42px;
+    padding-bottom: 35px;
+}
+
+/* Brand */
+.footer-brand {
+    max-width: 310px;
+}
+
+.footer-brand .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-bottom: 14px;
+}
+
+.footer-brand .logo-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff9f1c, #ff6b00);
+    color: #111827;
+    font-size: 21px;
+    font-weight: 800;
+    box-shadow: 0 4px 18px rgba(255, 140, 0, 0.2);
+}
+
+.footer-brand .logo-text {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+}
+
+.footer-brand p {
+    color: #9ca3af;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Navigation links */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 55px;
+}
+
+.footer-links > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.footer-links h3,
+.footer-social h3 {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 5px;
+}
+
+.footer-links a,
+.footer-social a {
+    color: #9ca3af;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+    color: #ff9f1c;
+    transform: translateX(3px);
+}
+
+/* Social links, if included in your HTML */
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+/* Copyright area */
+.footer .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 20px 15px;
+    text-align: center;
+    background: #080d18;
+}
+
+.footer-bottom p {
+    color: #9ca3af;
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.footer-bottom .footer-credit {
+    color: #ff9f1c;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Tablet and mobile */
+@media (max-width: 768px) {
+    .footer .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        padding-top: 32px;
+        padding-bottom: 28px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+    .footer-links {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 20px;
+    }
+
+    .footer-links > div {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .footer-links {
+        gap: 22px 12px;
+    }
+
+    .footer-brand .logo-text {
+        font-size: 20px;
+    }
+}
