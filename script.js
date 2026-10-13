@@ -1,5 +1,7 @@
+
 /* =========================================
-   APK VAULT - JAVASCRIPT
+   APK VAULT - UPDATED JAVASCRIPT
+   App data is loaded from apps.json
 ========================================= */
 
 
@@ -7,28 +9,7 @@
    APP DATA
 ========================================= */
 
-const apps = [
-    {
-        id: 1,
-        name: "CapCut - Video Editor",
-        category: "entertainment",
-        version: "19.7.0",
-        size: "247MB",
-        updated: "13 Oct 2026",
-        icon: "images/apps/capcut.png",
-        description: "A video editing application with tools for creating and editing videos.",
-        about: "CapCut - Video Editor provides video editing tools and features for creating and enhancing videos.",
-        features: [
-            "Video editing tools",
-            "Filters and effects",
-            "Text and stickers",
-            "Audio editing",
-            "Video export"
-        ],
-        changelog: "Initial listing.",
-        apk: "https://github.com/faique-hub/APK-Vault/releases/download/v1.1.0/capcut.apk"
-    }
-];
+let apps = [];
 
 
 /* =========================================
@@ -36,69 +17,37 @@ const apps = [
 ========================================= */
 
 const appsGrid = document.getElementById("appsGrid");
-
 const searchInput = document.getElementById("searchInput");
-
 const searchBtn = document.getElementById("searchBtn");
 
 const categoryButtons =
     document.querySelectorAll(".category-btn");
 
-const appCount =
-    document.getElementById("appCount");
-
-const noResults =
-    document.getElementById("noResults");
-
-const appDetails =
-    document.getElementById("appDetails");
-
-const appsSection =
-    document.getElementById("apps");
-
-const backBtn =
-    document.getElementById("backBtn");
-
-const menuBtn =
-    document.getElementById("menuBtn");
-
-const navbar =
-    document.querySelector(".navbar");
+const appCount = document.getElementById("appCount");
+const noResults = document.getElementById("noResults");
+const appDetails = document.getElementById("appDetails");
+const appsSection = document.getElementById("apps");
+const backBtn = document.getElementById("backBtn");
+const menuBtn = document.getElementById("menuBtn");
+const navbar = document.querySelector(".navbar");
 
 
 /* =========================================
    DETAILS ELEMENTS
 ========================================= */
 
-const detailsIcon =
-    document.getElementById("detailsIcon");
-
-const detailsName =
-    document.getElementById("detailsName");
-
+const detailsIcon = document.getElementById("detailsIcon");
+const detailsName = document.getElementById("detailsName");
 const detailsDescription =
     document.getElementById("detailsDescription");
 
-const detailsVersion =
-    document.getElementById("detailsVersion");
-
-const detailsSize =
-    document.getElementById("detailsSize");
-
-const detailsCategory =
-    document.getElementById("detailsCategory");
-
-const detailsAbout =
-    document.getElementById("detailsAbout");
-
-const detailsFeatures =
-    document.getElementById("detailsFeatures");
-
-const detailsChangelog =
-    document.getElementById("detailsChangelog");
-
-const downloadBtn =
-    document.getElementById("downloadBtn");
+const detailsVersion = document.getElementById("detailsVersion");
+const detailsSize = document.getElementById("detailsSize");
+const detailsCategory = document.getElementById("detailsCategory");
+const detailsAbout = document.getElementById("detailsAbout");
+const detailsFeatures = document.getElementById("detailsFeatures");
+const detailsChangelog = document.getElementById("detailsChangelog");
+const downloadBtn = document.getElementById("downloadBtn");
 
 
 /* =========================================
@@ -106,7 +55,6 @@ const downloadBtn =
 ========================================= */
 
 function getCategoryName(category) {
-
     const categories = {
         tools: "Tools",
         education: "Education",
@@ -120,107 +68,157 @@ function getCategoryName(category) {
 
 
 /* =========================================
+   LOAD APPS FROM apps.json
+========================================= */
+
+async function loadApps() {
+    try {
+        const response = await fetch("apps.json");
+
+        if (!response.ok) {
+            throw new Error(
+                `Failed to load apps.json (${response.status})`
+            );
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error("apps.json must contain an array.");
+        }
+
+        apps = data.map((app, index) => ({
+            ...app,
+            id: app.id ?? index + 1,
+            name: app.name || "Unnamed App",
+            category: app.category || "other",
+            version: app.version || "Unknown",
+            size: app.size || "Unknown",
+            updated: app.updated || "Not specified",
+            icon: app.icon || "images/apps/capcut.png",
+            description: app.description || "",
+            about: app.about || "",
+            features: Array.isArray(app.features)
+                ? app.features
+                : [],
+            changelog: app.changelog || "No changelog available.",
+            apk: app.apk || ""
+        }));
+
+        displayApps(apps);
+
+        console.log(
+            `APK Vault: ${apps.length} app(s) loaded successfully.`
+        );
+
+    } catch (error) {
+        console.error("APK Vault loading error:", error);
+
+        apps = [];
+
+        if (appsGrid) {
+            appsGrid.innerHTML =
+                "<p>Apps load nahi ho paayin. Please try again later.</p>";
+        }
+
+        if (appCount) {
+            appCount.textContent = "Apps unavailable";
+        }
+
+        if (noResults) {
+            noResults.hidden = true;
+        }
+    }
+}
+
+
+/* =========================================
    DISPLAY APPS
 ========================================= */
 
 function displayApps(appList) {
+    if (!appsGrid) return;
 
     appsGrid.innerHTML = "";
 
-    appCount.textContent =
-        `${appList.length} App${appList.length !== 1 ? "s" : ""}`;
-
+    if (appCount) {
+        appCount.textContent =
+            `${appList.length} App${appList.length !== 1 ? "s" : ""}`;
+    }
 
     if (appList.length === 0) {
-
-        noResults.hidden = false;
-
+        if (noResults) noResults.hidden = false;
         return;
     }
 
-
-    noResults.hidden = true;
-
+    if (noResults) noResults.hidden = true;
 
     appList.forEach(app => {
-
         const card = document.createElement("article");
-
         card.className = "app-card";
 
+        /* Build card safely */
+        const top = document.createElement("div");
+        top.className = "app-card-top";
 
-        card.innerHTML = `
+        const icon = document.createElement("img");
+        icon.src = app.icon;
+        icon.alt = `${app.name} icon`;
+        icon.className = "app-icon";
+        icon.loading = "lazy";
 
-            <div class="app-card-top">
+        const info = document.createElement("div");
+        info.className = "app-info";
 
-                <img
-                    src="${app.icon}"
-                    alt="${app.name} icon"
-                    class="app-icon"
-                    loading="lazy"
-                >
+        const name = document.createElement("h3");
+        name.textContent = app.name;
 
-                <div class="app-info">
+        const category = document.createElement("span");
+        category.className = "app-category";
+        category.textContent = getCategoryName(app.category);
 
-                    <h3>
-                        ${app.name}
-                    </h3>
+        info.append(name, category);
+        top.append(icon, info);
 
-                    <span class="app-category">
-                        ${getCategoryName(app.category)}
-                    </span>
+        const description = document.createElement("p");
+        description.className = "app-description";
+        description.textContent = app.description;
 
-                </div>
+        const meta = document.createElement("div");
+        meta.className = "app-meta";
 
-            </div>
+        [`v${app.version}`, app.size, app.updated].forEach(value => {
+            const span = document.createElement("span");
+            span.textContent = value;
+            meta.appendChild(span);
+        });
 
+        const actions = document.createElement("div");
+        actions.className = "app-actions";
 
-            <p class="app-description">
-                ${app.description}
-            </p>
+        const viewButton = document.createElement("button");
+        viewButton.className = "view-btn";
+        viewButton.type = "button";
+        viewButton.textContent = "View Details";
+        viewButton.addEventListener("click", () => {
+            showAppDetails(app.id);
+        });
 
+        actions.appendChild(viewButton);
 
-            <div class="app-meta">
+        if (app.apk) {
+            const downloadLink = document.createElement("a");
+            downloadLink.href = app.apk;
+            downloadLink.className = "card-download-btn";
+            downloadLink.textContent = "Download APK";
+            downloadLink.target = "_blank";
+            downloadLink.rel = "noopener noreferrer";
 
-                <span>
-                    v${app.version}
-                </span>
+            actions.appendChild(downloadLink);
+        }
 
-                <span>
-                    ${app.size}
-                </span>
-
-                <span>
-                    ${app.updated}
-                </span>
-
-            </div>
-
-
-            <div class="app-actions">
-
-                <button
-                    class="view-btn"
-                    onclick="showAppDetails(${app.id})"
-                >
-                    View Details
-                </button>
-
-                <a
-                    href="${app.apk}"
-                    class="card-download-btn"
-                    download
-                >
-                    Download APK
-                </a>
-
-            </div>
-
-        `;
-
-
+        card.append(top, description, meta, actions);
         appsGrid.appendChild(card);
-
     });
 }
 
@@ -230,89 +228,70 @@ function displayApps(appList) {
 ========================================= */
 
 function showAppDetails(appId) {
+    const app = apps.find(item => String(item.id) === String(appId));
 
-    const app =
-        apps.find(item => item.id === appId);
+    if (!app) return;
 
-
-    if (!app) {
-        return;
+    if (detailsIcon) {
+        detailsIcon.src = app.icon;
+        detailsIcon.alt = `${app.name} icon`;
     }
 
+    if (detailsName) detailsName.textContent = app.name;
 
-    /* App information */
+    if (detailsDescription) {
+        detailsDescription.textContent = app.description;
+    }
 
-    detailsIcon.src = app.icon;
+    if (detailsVersion) {
+        detailsVersion.textContent = `Version: ${app.version}`;
+    }
 
-    detailsIcon.alt =
-        `${app.name} icon`;
+    if (detailsSize) {
+        detailsSize.textContent = `Size: ${app.size}`;
+    }
 
-    detailsName.textContent =
-        app.name;
+    if (detailsCategory) {
+        detailsCategory.textContent =
+            `Category: ${getCategoryName(app.category)}`;
+    }
 
-    detailsDescription.textContent =
-        app.description;
+    if (detailsAbout) detailsAbout.textContent = app.about;
 
-    detailsVersion.textContent =
-        `Version: ${app.version}`;
+    if (detailsChangelog) {
+        detailsChangelog.textContent = app.changelog;
+    }
 
-    detailsSize.textContent =
-        `Size: ${app.size}`;
+    if (detailsFeatures) {
+        detailsFeatures.innerHTML = "";
 
-    detailsCategory.textContent =
-        `Category: ${getCategoryName(app.category)}`;
+        app.features.forEach(feature => {
+            const li = document.createElement("li");
+            li.textContent = feature;
+            detailsFeatures.appendChild(li);
+        });
+    }
 
-    detailsAbout.textContent =
-        app.about;
+    if (downloadBtn) {
+        if (app.apk) {
+            downloadBtn.href = app.apk;
+            downloadBtn.hidden = false;
+            downloadBtn.target = "_blank";
+            downloadBtn.rel = "noopener noreferrer";
+            downloadBtn.removeAttribute("download");
+        } else {
+            downloadBtn.removeAttribute("href");
+            downloadBtn.hidden = true;
+        }
+    }
 
-    detailsChangelog.textContent =
-        app.changelog;
-
-
-    /* Features */
-
-    detailsFeatures.innerHTML = "";
-
-
-    app.features.forEach(feature => {
-
-        const li =
-            document.createElement("li");
-
-        li.textContent = feature;
-
-        detailsFeatures.appendChild(li);
-
-    });
-
-
-    /* Download */
-
-    downloadBtn.href = app.apk;
-
-    downloadBtn.setAttribute(
-        "download",
-        ""
-    );
-
-
-    /* Hide app listing */
-
-    appsSection.hidden = true;
-
-
-    /* Show details */
-
-    appDetails.hidden = false;
-
-
-    /* Scroll to top */
+    if (appsSection) appsSection.hidden = true;
+    if (appDetails) appDetails.hidden = false;
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-
 }
 
 
@@ -320,18 +299,19 @@ function showAppDetails(appId) {
    BACK TO APPS
 ========================================= */
 
-backBtn.addEventListener("click", () => {
+if (backBtn) {
+    backBtn.addEventListener("click", () => {
+        if (appDetails) appDetails.hidden = true;
+        if (appsSection) appsSection.hidden = false;
 
-    appDetails.hidden = true;
-
-    appsSection.hidden = false;
-
-    window.scrollTo({
-        top: appsSection.offsetTop - 70,
-        behavior: "smooth"
+        window.scrollTo({
+            top: appsSection
+                ? appsSection.offsetTop - 70
+                : 0,
+            behavior: "smooth"
+        });
     });
-
-});
+}
 
 
 /* =========================================
@@ -339,69 +319,45 @@ backBtn.addEventListener("click", () => {
 ========================================= */
 
 function searchApps() {
+    if (!searchInput) return;
 
-    const searchTerm =
-        searchInput.value
-        .trim()
-        .toLowerCase();
+    const searchTerm = searchInput.value.trim().toLowerCase();
 
+    const selectedButton =
+        document.querySelector(".category-btn.active");
 
-    const filteredApps =
-        apps.filter(app => {
+    const selectedCategory =
+        selectedButton?.dataset.category || "all";
 
-            return (
-                app.name.toLowerCase()
-                    .includes(searchTerm)
+    const filteredApps = apps.filter(app => {
+        const matchesSearch =
+            app.name.toLowerCase().includes(searchTerm) ||
+            app.description.toLowerCase().includes(searchTerm) ||
+            app.category.toLowerCase().includes(searchTerm);
 
-                ||
+        const matchesCategory =
+            selectedCategory === "all" ||
+            app.category === selectedCategory;
 
-                app.description.toLowerCase()
-                    .includes(searchTerm)
-
-                ||
-
-                app.category.toLowerCase()
-                    .includes(searchTerm)
-            );
-
-        });
-
+        return matchesSearch && matchesCategory;
+    });
 
     displayApps(filteredApps);
-
 }
 
+if (searchInput) {
+    searchInput.addEventListener("input", searchApps);
 
-/* Search while typing */
-
-searchInput.addEventListener(
-    "input",
-    searchApps
-);
-
-
-/* Search button */
-
-searchBtn.addEventListener(
-    "click",
-    searchApps
-);
-
-
-/* Enter key */
-
-searchInput.addEventListener(
-    "keydown",
-    event => {
-
+    searchInput.addEventListener("keydown", event => {
         if (event.key === "Enter") {
-
             searchApps();
-
         }
+    });
+}
 
-    }
-);
+if (searchBtn) {
+    searchBtn.addEventListener("click", searchApps);
+}
 
 
 /* =========================================
@@ -409,48 +365,14 @@ searchInput.addEventListener(
 ========================================= */
 
 categoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        categoryButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
 
-    button.addEventListener(
-        "click",
-        () => {
-
-            /* Remove active class */
-
-            categoryButtons.forEach(btn => {
-
-                btn.classList.remove("active");
-
-            });
-
-
-            /* Add active class */
-
-            button.classList.add("active");
-
-
-            const selectedCategory =
-                button.dataset.category;
-
-
-            if (selectedCategory === "all") {
-
-                displayApps(apps);
-
-                return;
-            }
-
-
-            const filteredApps =
-                apps.filter(app =>
-                    app.category === selectedCategory
-                );
-
-
-            displayApps(filteredApps);
-
-        }
-    );
-
+        button.classList.add("active");
+        searchApps();
+    });
 });
 
 
@@ -458,49 +380,28 @@ categoryButtons.forEach(button => {
    MOBILE MENU
 ========================================= */
 
-menuBtn.addEventListener(
-    "click",
-    () => {
-
+if (menuBtn && navbar) {
+    menuBtn.addEventListener("click", () => {
         navbar.classList.toggle("active");
-
-    }
-);
-
-
-/* Close mobile menu
-   after clicking a link
-*/
-
-document
-    .querySelectorAll(".navbar a")
-    .forEach(link => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                navbar.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
     });
+}
+
+document.querySelectorAll(".navbar a").forEach(link => {
+    link.addEventListener("click", () => {
+        if (navbar) navbar.classList.remove("active");
+    });
+});
 
 
 /* =========================================
    INITIAL LOAD
 ========================================= */
 
-displayApps(apps);
+loadApps();
 
 
 /* =========================================
    CONSOLE MESSAGE
 ========================================= */
 
-console.log(
-    "APK Vault loaded successfully 🚀"
-);
+console.log("APK Vault JavaScript initialized.");

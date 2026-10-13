@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "CapCut - Video Editor",
+    "category": "entertainment",
+    "version": "VERIFY_ACTUAL_VERSION",
+    "size": "247MB",
+    "updated": "13 Oct 2026",
+    "icon": "images/apps/capcut.png",
+    "description": "A video editing application with tools for creating and editing videos.",
+    "about": "CapCut - Video Editor provides video editing tools and features for creating and enhancing videos.",
+    "features": [
+      "Video editing tools",
+      "Filters and effects",
+      "Text and stickers",
+      "Audio editing",
+      "Video export"
+    ],
+    "changelog": "Updated listing.",
+    "apk": "https://github.com/faique-hub/APK-Vault/releases/download/v1.1.0/capcut.apk"
+  }
+]
