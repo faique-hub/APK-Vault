@@ -26,7 +26,7 @@ const apps = [
             "Video export"
         ],
         changelog: "Initial listing.",
-        apk: "https://github.com/faique-hub/APK-Vault/releases/download/v1.0.0/capcut.apk"
+        apk: "https://github.com/faique-hub/APK-Vault/releases/download/v1.1.0/capcut.apk"
     }
 ];
 
