@@ -18,5 +18,43 @@
     ],
     "changelog": "Updated listing.",
     "apk": "https://github.com/faique-hub/APK-Vault/releases/download/v1.1.0/capcut.apk"
+  },
+
+  {
+    "id": 2,
+    "name": "Picsart",
+    "category": "Photo Editing",
+    "version": "26.0.5_lite",
+    "size": "78.4 MB",
+    "updated": "2026-10-18",
+    "icon": "images/apps/picsart.png",
+    "description": "Picsart photo editing app",
+    "about": "Edit photos and create designs with Picsart.",
+    "features": [
+      "Photo editing tools",
+      "Creative effects and filters",
+      "Design and image editing"
+    ],
+    "changelog": "Added Picsart version 26.0.5 Lite.",
+    "apk": "https://github.com/faique-hub/APK-Vault/releases/download/picsart-v26.0.5-lite/Picsart.apk"
+  },
+
+  {
+    "id": 3,
+    "name": "HappyMod",
+    "category": "Tools",
+    "version": "3.4.5",
+    "size": "20.7 MB",
+    "updated": "2026-10-18",
+    "icon": "images/apps/happymod.png",
+    "description": "HappyMod app",
+    "about": "App details and version information for HappyMod.",
+    "features": [
+      "App browsing",
+      "Version information"
+    ],
+    "changelog": "Added HappyMod version 3.4.5.",
+    "apk": "https://github.com/faique-hub/APK-Vault/releases/download/happymod-v3.4.5/HappyMod.apk"
   }
+
 ]
