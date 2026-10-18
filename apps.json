@@ -7,7 +7,7 @@
     "size": "247MB",
     "updated": "13 Oct 2026",
     "icon": "images/apps/capcut.png",
-    "description": "A video editing application with tools for creating and editing videos.",
+    "description": "A video editing application with tools for creating and editing videos and run without VPN.",
     "about": "CapCut - Video Editor provides video editing tools and features for creating and enhancing videos.",
     "features": [
       "Video editing tools",
@@ -55,6 +55,47 @@
     ],
     "changelog": "Added HappyMod version 3.4.5.",
     "apk": "https://github.com/faique-hub/APK-Vault/releases/download/happymod-v3.4.5/HappyMod.apk"
+  },
+
+  {
+    "id": 4,
+    "name": "Hill Climb Racing",
+    "category": "games",
+    "version": "1.72.2",
+    "size": "121 MB",
+    "updated": "2026-10-18",
+    "icon": "images/apps/hillclimbracing.png",
+    "description": "Hill Climb Racing (MOD, Unlimited Money) - A popular arcade racing simulator where you race across challenging terrain, complete tasks, earn coins, upgrade vehicles, and customize your driver.",
+    "about": "Race across varied locations, improve your vehicles, and master the game's physics. MOD features such as unlimited money may vary by APK version.",
+    "features": [
+      "Hill racing",
+      "Vehicle upgrades",
+      "Challenging tracks",
+      "MOD features may vary by version"
+    ],
+    "changelog": "Added Hill Climb Racing version 1.72.2.",
+    "apk": "https://github.com/faique-hub/APK-Vault/releases/download/hill-climb-racing-v1.72.2/HillClimbRacing.apk"
+  },
+
+  {
+    "id": 5,
+    "name": "Subway Surfers",
+    "category": "games",
+    "version": "3.70.3",
+    "size": "257 MB",
+    "updated": "2026-10-18",
+    "icon": "images/apps/subwaysurfers.png",
+    "description": "Subway Surfers (MOD, Unlimited Coins/Keys) - An endless runner where Jake escapes along railway tracks, dodges trains, collects coins, and uses hoverboards and power-ups.",
+    "about": "Run through subway tracks, avoid obstacles, collect rewards, and customize your character. MOD features such as unlimited coins or keys may vary by APK version.",
+    "features": [
+      "Endless running",
+      "Obstacle dodging",
+      "Coin collection",
+      "Hoverboards and power-ups",
+      "MOD features may vary by version"
+    ],
+    "changelog": "Added Subway Surfers version 3.70.3.",
+    "apk": "https://github.com/faique-hub/APK-Vault/releases/download/subway-surfers-v3.70.3/SubwaySurfers.apk"
   }
 
 ]
