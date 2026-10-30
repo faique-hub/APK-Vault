@@ -463,5 +463,30 @@
 
     <script src="script.js"></script>
 
+    <!-- Firebase Analytics -->
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+    import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDRoUNiNY2PKQAfnTM95iwi5BKsbT_fwz4",
+        authDomain: "apk-vault-76943.firebaseapp.com",
+        projectId: "apk-vault-76943",
+        storageBucket: "apk-vault-76943.firebasestorage.app",
+        messagingSenderId: "66052841091",
+        appId: "1:66052841091:web:eb2593d3c83a6174e2c5b6",
+        measurementId: "G-8G855NNZ7N"
+    };
+
+    const app = initializeApp(firebaseConfig);
+
+    isSupported().then((supported) => {
+        if (supported) {
+        getAnalytics(app);
+        console.log("APK Vault Analytics Connected!");
+        }
+    });
+    </script>
+
 </body>
 </html>
