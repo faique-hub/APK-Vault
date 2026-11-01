@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "CapCut - Video Editor",
-    "category": "entertainment",
+    "category": "Entertainment",
     "version": "VERIFY_ACTUAL_VERSION",
     "size": "247MB",
     "updated": "13 Oct 2026",
@@ -23,7 +23,7 @@
   {
     "id": 2,
     "name": "Picsart",
-    "category": "Photo Editing",
+    "category": "Entertainment",
     "version": "26.0.5_lite",
     "size": "78.4 MB",
     "updated": "2026-10-18",
@@ -96,6 +96,89 @@
     ],
     "changelog": "Added Subway Surfers version 3.70.3.",
     "apk": "https://github.com/faique-hub/APK-Vault/releases/download/subway-surfers-v3.70.3/SubwaySurfers.apk"
+  },
+
+  {
+    "id": 6,
+    "name": "InShot",
+    "category": "Entertainment",
+    "version": "2.250.1556",
+    "size": "98.5 MB",
+    "updated": "2026-11-01",
+    "icon": "images/apps/InShot.png",
+    "description": "Video and photo editing app with tools to create and edit visual content.",
+    "about": "InShot provides video and photo editing features for creating and enhancing content.",
+    "features": [
+      "Video editing",
+      "Photo editing",
+      "Filters and effects",
+      "Text and stickers",
+      "Audio editing"
+    ],
+    "changelog": "Added InShot version 2.250.1556.",
+    "apk": "https://github.com/faique-hub/APK-Vault/releases/download/inshot-v2.250.1556/InShot.apk"
+  },
+
+  {
+    "id": 7,
+    "name": "ChatGPT",
+    "category": "Tools",
+    "version": "1.2026.293",
+    "size": "100 MB",
+    "updated": "2026-11-01",
+    "icon": "images/apps/ChatGPT.png",
+    "description": "AI assistant for asking questions, learning, writing, and exploring ideas.",
+    "about": "ChatGPT is an AI assistant that can help with information, explanations, writing, and creative tasks.",
+    "features": [
+      "AI-powered conversations",
+      "Learning assistance",
+      "Writing assistance",
+      "Idea generation"
+    ],
+    "changelog": "Added ChatGPT version 1.2026.293.",
+    "apk": "https://github.com/faique-hub/APK-Vault/releases/download/chatgpt-v1.2026.293/ChatGPT.apk"
+  },
+
+  {
+    "id": 8,
+    "name": "Temp Mail",
+    "category": "Tools",
+    "version": "4.12",
+    "size": "23.5 MB",
+    "updated": "2026-11-01",
+    "icon": "images/apps/Tem Mail.png",
+    "description": "Temporary email app for receiving messages through disposable email addresses.",
+    "about": "Temp Mail provides temporary email addresses for receiving emails without using your primary inbox.",
+    "features": [
+      "Temporary email addresses",
+      "Receive emails",
+      "Disposable inbox"
+    ],
+    "changelog": "Added Temp Mail version 4.12.",
+    "apk": "https://github.com/faique-hub/APK-Vault/releases/download/temp-mail-v4.12/Temp.Mail.apk"
+  },
+
+  {
+    "id": 9,
+    "name": "VN Video Editor",
+    "category": "Entertainment",
+    "version": "2.23.2",
+    "size": "369 MB",
+    "updated": "2026-11-01",
+    "icon": "images/apps/VN - Video Editor.png",
+    "description": "Video editing application with tools for creating and editing videos.",
+    "about": "VN Video Editor provides editing tools for creating and enhancing video projects.",
+    "features": [
+      "Video editing",
+      "Timeline editing",
+      "Transitions and effects",
+      "Text and titles",
+      "Video export"
+    ],
+    "changelog": "Added VN Video Editor version 2.23.2.",
+    "apk": "https://github.com/faique-hub/APK-Vault/releases/download/vn-video-editor-v2.23.2/VN.-.Video.Editor.apk"
   }
 
 ]
+
+
